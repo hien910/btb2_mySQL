@@ -1,0 +1,62 @@
+--1.Tạo một bảng mới có tên “Product” với các trường: “product_id” , “product_name” (varchar), “price” (double) và “quantity” (int).
+--2.Thêm 10 sản phẩm vào bảng
+create table Product(
+	product_id int,
+    product_name varchar(255),
+    price double,
+    quantity int)
+    insert into Product(product_id, product_name, price,quantity)
+    values (1,'p1', 50, 12),
+    (2,'p2', 150, 9),
+    (3,'p3', 20, 21),
+    (4,'p4', 500, 2),
+    (5,'p5', 250, 55),
+    (6,'p6', 35, 19),
+    (7,'p7', 58, 23),
+    (8,'p8', 90, 11),
+    (9,'p9', 25, 100),
+    (10,'p10',200, 40);
+
+select * from Product;
+
+-- 3.Thêm  một trường “description” (varchar) vào bảng “Product” sau khi đã tạo bảng
+alter table Product
+add product_description varchar(255);
+
+--4.Cập nhật giá (price) của sản phẩm có “product_id” là 1 thành 99.
+set sql_safe_updates=0;
+update Product
+set price = 99
+where product_id = 1;
+
+
+--5.Tăng giá của sản phẩm có “product_id” là 2 lên 10%.
+update Product
+set price = Product.price*(110/100)
+where product_id = 2;
+
+--6.Cập nhật tên của người có id là 10 thành “John Doe”.
+select * from Person;
+update Person
+set fullname ='John Doe'
+where id =10;
+
+--7.Đổi quốc gia của người có id là 3 thành “Canada”.
+update Person
+set country ='C'
+where id =3;
+
+--8.Sửa ngày sinh của người có id là 7 thành “1990-05-15” và quốc gia thành Việt Nam.
+update Person
+set birthday= '1990-05-15',country= 'VietNam'
+where id =7;
+
+--9.Tăng mức lương của người có id là 40 lên 10%.
+update Person
+set salary= Person.salary*(110/100)
+where id= 40;
+
+--10.Giảm lương của những người nào có mức lương trên 6000 xuống 15%
+update Person
+set salary = Person.salary*(85/100)
+where salary > 6000;
